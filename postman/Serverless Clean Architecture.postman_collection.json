@@ -1,0 +1,144 @@
+{
+  "info": {
+    "_postman_id": "3379d34b-fac5-4993-a6d0-e4f1eddf1c14",
+    "name": "Serverless Clean Architecture",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "752706"
+  },
+  "item": [
+    {
+      "name": "Create Account",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Lee\",\n    \"surname\": \"Gilmore\",\n    \"customerAddress\": {\n        \"addressLineOne\": \"12 Bob Street\",\n        \"postCode\": \"ne91bb\"\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/",
+          "host": ["{{api-url}}"],
+          "path": ["prod", "accounts", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upgrade Account",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Lee\",\n    \"surname\": \"Gilmore\",\n    \"customerAddress\": {\n        \"addressLineOne\": \"12 Next Street\",\n        \"postCode\": \"ne91bb\"\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/5f00d811-f507-44c2-bf3a-36591845e9d2",
+          "host": ["{{api-url}}"],
+          "path": ["prod", "accounts", "5f00d811-f507-44c2-bf3a-36591845e9d2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Playlist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"playlistName\": \"coolmusic\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/7d4bb2be-c6c8-4bfb-9478-1b0f4e09f5e4/playlists",
+          "protocol": "https",
+          "host": ["{{api-url}}"],
+          "path": [
+            "prod",
+            "accounts",
+            "7d4bb2be-c6c8-4bfb-9478-1b0f4e09f5e4",
+            "playlists"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Song To Playlist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"songId\": \"four\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/5f00d811-f507-44c2-bf3a-36591845e9d2/playlists/a411ad08-7c63-4153-bad5-22ff63184664/",
+          "host": ["{{api-url}}"],
+          "path": [
+            "prod",
+            "accounts",
+            "5f00d811-f507-44c2-bf3a-36591845e9d2",
+            "playlists",
+            "a411ad08-7c63-4153-bad5-22ff63184664",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Account by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/5f00d811-f507-44c2-bf3a-36591845e9d2",
+          "host": ["{{api-url}}"],
+          "path": ["prod", "accounts", "5f00d811-f507-44c2-bf3a-36591845e9d2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upgrade Account",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{api-url}}/prod/accounts/0af07a11-6477-47bd-99b6-a73f694beada",
+          "protocol": "https",
+          "host": ["{{api-url}}"],
+          "path": ["prod", "accounts", "0af07a11-6477-47bd-99b6-a73f694beada"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "api-url",
+      "value": "https://your-api.execute-api.eu-west-1.amazonaws.com"
+    }
+  ]
+}

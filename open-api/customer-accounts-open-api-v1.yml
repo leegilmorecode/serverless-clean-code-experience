@@ -1,0 +1,184 @@
+openapi: "3.0.1"
+info:
+  title: "AccountsApi"
+  description: "Onion Accounts API"
+  version: 1.0.0
+servers:
+- url: "https://your-rest-api.execute-api.your-region.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "/prod"
+paths:
+  /accounts/{id}:
+    get:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string" 
+      responses:
+        '200':
+          description: get a customer account
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount' 
+    patch:
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        '200':
+          description: upgrade a customer account
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'  
+  /accounts:
+    post:
+      requestBody:
+        description: create a new customer account
+        content: 
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/CreateNewCustomerAccount'
+      responses:
+         '201':
+          description: create a customer account
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'    
+  /accounts/{id}/playlists/:
+    post:
+      requestBody:
+        description: create a new customer playlist
+        content: 
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/CreateNewPlaylist'
+      responses:
+         '201':
+          description: create a customer playlist
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPlaylist' 
+  /accounts/{id}/playlists/{playlistId}/:
+    post:
+      requestBody:
+        description: add a song to the playlist
+        content: 
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/AddSongToPlaylist'
+      responses:
+        '201':
+          description: add a song to the playlist
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPlaylist'    
+components:
+  schemas:
+    CreateNewCustomerAccount:
+      type: object
+      required:
+        - firstName
+        - surname
+      properties:
+        firstname:
+          type: "string"
+        surname:
+          type: "string"
+        customerAddress:
+          type: "object"
+          $ref: '#/components/schemas/CustomerAddress'
+    CustomerAccount:
+      type: object
+      required:
+        - firstName
+        - surname
+        - created
+        - updated
+        - subscriptionType
+        - paymentStatus
+        - playlists
+        - customerAddress
+      properties:
+        firstname:
+          type: "string"
+        surname:
+          type: "string"
+        created:
+          type: "string"
+        updated:
+          type: "string"
+        subscriptionType:
+          type: "string"
+        paymentStatus:
+          type: "string"
+        playlists:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/CustomerPlaylist'
+        customerAddress:
+           $ref: '#/components/schemas/CustomerPlaylist'
+    CreateNewPlaylist:
+      type: object
+      required:
+        - playlistName
+      properties:
+        playlistName:
+          type: "string"
+    AddSongToPlaylist:
+      type: object
+      required:
+        - songId
+      properties:
+        songId:
+          type: "string"
+    CustomerAddress:
+      type: object
+      required:
+        - addressLineOne
+        - postCode
+      properties:
+        addressLineOne:
+          type: "string"
+        addressLineTwo:
+          type: "string"
+        addressLineThree:
+          type: "string"
+        addressLineFour:
+          type: "string"
+        addressLineFive:
+          type: "string"
+        postCode:
+          type: "string"
+    CustomerPlaylist:
+      type: object
+      required:
+        - playlistName
+        - id
+        - created
+        - updated
+        - songIds
+      properties:
+        id:
+          type: "string"
+        created:
+          type: "string"
+        updated:
+          type: "string"
+        playlistName:
+          type: "string"
+        songIds:
+          type: "array"
+          items:
+            type: 'string'
+        
